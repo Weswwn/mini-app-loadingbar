@@ -8,11 +8,16 @@ class App extends React.Component {
         super(props)
         this.state = {
             weatherList: [],
+            degreeChoice: 'imperial'
         }
     }
 
     componentDidMount() {
-        axios.get('/api/weather')
+        axios.get('/api/weather', {
+            params: {
+                degreeChoice: this.state.degreeChoice
+            }
+        })
         .then((response) => {
             // This if statement is required to format data from database
             // versus from axios get request
