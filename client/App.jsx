@@ -14,8 +14,8 @@ class App extends React.Component {
     componentDidMount() {
         axios.get('/api/weather')
         .then((response) => {
-            console.log(response);
-            console.log(response.data.list);
+            console.log('response:', response.data);
+            console.log('response.data.list:', response.data.list);
             this.setState({
                 weatherList: response.data.list
             })
