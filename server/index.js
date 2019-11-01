@@ -23,19 +23,24 @@ app.get('/api/weather', (req, res, next) => {
           params: {
               id: 5391959,
               appid: process.env.WEATHERAPIKEY,
-              units: 'imperial'
+              units: req.query.degreeChoice
           }
         })
         .then((response) => {
-            insertWeatherData(response.data.list);
-            res.send(response.data);
+          console.log('Coming from axios');
+          insertWeatherData(response.data.list);
+          
+          response.data.source = 'axios';
+          res.send(response.data);
         })
         .catch((error) => {
-            next(error);
-            console.log(error);
-            res.sendStatus(400);
+          next(error);
+          console.log('Error:', error);
+          res.sendStatus(400);
         })
       } else {
+        console.log('Coming from database');
+        data.source = 'Database';
         res.send(data);
       }
     }

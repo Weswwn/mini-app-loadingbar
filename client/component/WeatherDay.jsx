@@ -13,13 +13,16 @@ class WeatherDay extends React.Component {
     }
 
     render() {
+        // (0°C × 9/5) + 32
         return (
             <WeatherBox className="weather-container" >
                 <span key={this.props.index}> 
-                    <span>{this.props.weather.main.temp_min}</span>
+                    {this.props.degreeChoice === 'metric' ? <span>{this.props.weather.main.temp_min} CELCIUS</span> : 
+                        <span>{(this.props.weather.main.temp_min * 9/5) + 32} FAHRENHEIT</span>}   
                     {' '}
                     <span>{this.props.weather.main.temp_max}</span>
                     {' '}
+                    <span>{this.props.weather.date}</span>
                 </span>
             </WeatherBox>
         )

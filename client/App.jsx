@@ -8,7 +8,7 @@ class App extends React.Component {
         super(props)
         this.state = {
             weatherList: [],
-            degreeChoice: 'imperial'
+            degreeChoice: 'metric'
         }
     }
 
@@ -21,6 +21,7 @@ class App extends React.Component {
         .then((response) => {
             // This if statement is required to format data from database
             // versus from axios get request
+            console.log(response.data);
             if (!response.data.list) {
                 response.data.list = response.data
             }
@@ -35,7 +36,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <WeatherList weatherlist={this.state.weatherList}/>
+            <WeatherList degreeChoice = {this.state.degreeChoice} weatherlist={this.state.weatherList}/>
         )
     }
 }
