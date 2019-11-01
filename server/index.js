@@ -12,7 +12,6 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }))
 
-
 app.get('/api/weather', (req, res, next) => {
   // Check if database already holds the data that we are trying to GET'
   findWeatherData((err, data)=>{
@@ -37,7 +36,6 @@ app.get('/api/weather', (req, res, next) => {
             res.sendStatus(400);
         })
       } else {
-        console.log(data);
         res.send(data);
       }
     }
