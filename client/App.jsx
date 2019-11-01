@@ -14,14 +14,17 @@ class App extends React.Component {
     componentDidMount() {
         axios.get('/api/weather')
         .then((response) => {
-            console.log('response:', response.data);
-            console.log('response.data.list:', response.data.list);
+            // This if statement is required to format data from database
+            // versus from axios get request
+            if (!response.data.list) {
+                response.data.list = response.data
+            }
             this.setState({
                 weatherList: response.data.list
             })
         })
         .catch((error) => {
-            console.log(error);
+            console.log('Error:', error);
         })
     }
 
